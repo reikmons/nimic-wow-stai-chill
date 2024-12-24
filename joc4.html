@@ -11,9 +11,9 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background-image: url('il_fullxfull.2037551600_nwgw.png'); /* Replace 'background.jpg' with the path to your image */
+      background-image: url('il_fullxfull.2037551600_nwgw.png'); /* Replace with the path to your image */
       background-size: cover;
-      background-position: center;
+      background-position: center bottom; /* Moves the image lower */
       background-repeat: no-repeat;
       color: white; /* Ensure text is visible on the background */
     }
@@ -85,7 +85,7 @@
       timeout = setTimeout(() => {
         targetButton.style.display = "block";
         startTime = Date.now();
-        message.textContent = "Click the button!";
+        message.textContent = "HAI APASA";
       }, delay);
     });
 
@@ -97,7 +97,7 @@
       startButton.disabled = false;
       
       if (timeTaken <= winningThreshold) {
-        message.textContent = "Congratulations! You won!";
+        message.textContent = "BRAVO SIRENO, INOTI BINE!";
         reactionTime.textContent = `Your reaction time: ${timeTaken} ms`;
 
         // Redirect to the next page after a short delay
@@ -105,7 +105,7 @@
           window.location.href = 'cadou4.html'; // Redirect to next page
         }, 2000); // Redirect after 2 seconds
       } else {
-        message.textContent = "Try again! You need a faster reaction time.";
+        message.textContent = "MAI REPEJOR FETITO.";
         reactionTime.textContent = `Your reaction time: ${timeTaken} ms`;
       }
     });
