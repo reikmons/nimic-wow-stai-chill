@@ -1,0 +1,95 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full screen background with smooth color-changing effect */
+body {
+    font-family: Arial, sans-serif;
+    color: rgb(255, 0, 0);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* To position the overlay relative to the body */
+    background: #000; /* Initial background color */
+    animation: colorChange 3s ease-in-out infinite; /* Smooth color change animation */
+}
+
+/* Overlay to give smooth color-changing effect */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 0, 0); /* Semi-transparent dark overlay */
+    pointer-events: none; /* Prevent overlay from blocking interaction with other content */
+}
+
+/* Content styling */
+.content {
+    text-align: center;
+    background: rgba(255, 0, 0, 0.7); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+/* Paragraph styling */
+p {
+    font-size: 1.5em;
+}
+
+/* Keyframe for smooth, seamless hot pink color changing */
+@keyframes colorChange {
+    0% {
+        background-color: #ff007f; /* Hot pink */
+    }
+    8% {
+        background-color: #ff3385; /* Bright pink */
+    }
+    16% {
+        background-color: #ff66b2; /* Light hot pink */
+    }
+    24% {
+        background-color: #ff007f; /* Hot pink */
+    }
+    32% {
+        background-color: #ff33cc; /* Hot pink with a purple tone */
+    }
+    40% {
+        background-color: #ff4d99; /* Medium hot pink */
+    }
+    48% {
+        background-color: #ff66b2; /* Light hot pink */
+    }
+    56% {
+        background-color: #ff1a66; /* Strong hot pink */
+    }
+    64% {
+        background-color: #ff007f; /* Hot pink */
+    }
+    72% {
+        background-color: #ff33cc; /* Hot pink with a purple tone */
+    }
+    80% {
+        background-color: #ff4d99; /* Medium hot pink */
+    }
+    88% {
+        background-color: #ff1a66; /* Strong hot pink */
+    }
+    96% {
+        background-color: #ff007f; /* Hot pink */
+    }
+    100% {
+        background-color: #ff007f; /* Return to hot pink */
+    }
+}

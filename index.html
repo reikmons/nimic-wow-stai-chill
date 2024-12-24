@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Enter Password</h1>
+        <form id="passwordForm">
+            <input type="password" id="passwordInput" placeholder="Enter password" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="errorMessage" class="error"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+    /* Full screen background */
+    body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background: #000000; /* Hot pink background */
+        overflow: hidden; /* Prevent scrolling */
+        /* Removing the cursor: none to make the cursor visible */
+        cursor: default; /* Make the default cursor visible */
+    }
+
+    .login-container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    input[type="password"] {
+        padding: 10px;
+        width: 200px;
+        margin-bottom: 10px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        background-color: transparent;
+        color: white;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #ffffff; /* Hot pink color */
+        border: none;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #ff3385;
+    }
+
+    .error {
+        color: red;
+        font-size: 0.9em;
+    }
+
+</style>

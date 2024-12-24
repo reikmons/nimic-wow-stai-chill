@@ -1,0 +1,53 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body styling */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Centered container */
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Form styles */
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #ddd;
+}
