@@ -80,6 +80,25 @@
             background-color: #ff3385; /* Change color on hover */
         }
 
+        /* Styling for Jocuri button */
+        .jocuri-btn {
+            position: absolute;
+            top: 90%; /* Adjust the vertical position */
+            left: 50%; /* Adjust the horizontal position */
+            transform: translateX(-50%); /* Center the button */
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #ff007f; /* Hot pink color */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .jocuri-btn:hover {
+            background-color: #ff3385; /* Change color on hover */
+        }
+
     </style>
 </head>
 <body>
@@ -93,7 +112,10 @@
     <img id="image2" src="https://www.imghippo.com/i/suyp1031g.png" alt="Image 2" class="static-image">
 
     <!-- Link to another page -->
-    <a href="loteria sirenelor.html" target="_blank">Go to Another Page</a>
+    
+
+    <!-- Jocuri Button -->
+    <button id="jocuriButton" class="jocuri-btn">Jocuri</button>
 
     <script>
         document.addEventListener('mousemove', function(e) {
@@ -118,6 +140,11 @@
             setTimeout(function() {
                 dolphin.remove();
             }, 400); // Change this time if you want dolphins to stay longer
+        });
+
+        // Redirect to the games page when the Jocuri button is clicked
+        document.getElementById('jocuriButton').addEventListener('click', function() {
+            window.location.href = 'joc1.html';  // Change this URL to your desired destination
         });
     </script>
 </body>
