@@ -7,10 +7,13 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
       height: 100vh;
+      display: flex;
+      flex-direction: column; /* Arrange items vertically */
+      justify-content: center; /* Center items vertically */
+      align-items: center; /* Center items horizontally */
       background-image: url('il_fullxfull.2037551600_nwgw.png'); /* Replace with the path to your image */
       background-size: cover;
       background-position: center bottom; /* Moves the image lower */
@@ -21,8 +24,12 @@
       margin-top: 20px;
     }
     #game-container {
-      margin: 50px auto;
+      margin: 20px auto;
       width: 300px;
+      background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better readability */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .button {
       width: 100%;
@@ -45,6 +52,9 @@
       background-color: #FF5722;
       color: white;
       display: none;
+    }
+    #message, #reaction-time {
+      margin-top: 10px;
     }
   </style>
 </head>
