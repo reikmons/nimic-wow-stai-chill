@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashing Number with Song</title>
+    <style>
+        /* Full screen flashing yellow background */
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: yellow;
+            animation: flashBackground 0.2s infinite alternate; /* Even faster flashing */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Arrange content vertically */
+        }
+
+        /* Keyframe to create the flashing effect for background */
+        @keyframes flashBackground {
+            0% {
+                background-color: rgb(255, 0, 144);
+            }
+            100% {
+                background-color: #ff0000;
+            }
+        }
+
+        /* Large number 2 in the center with flashing effect */
+        h1 {
+            font-size: 300px; /* Changed dimensions */
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            animation: flashNumber 0.2s infinite alternate; /* Even faster flashing */
+        }
+
+        /* Keyframe to make the number flash in opacity and size */
+        @keyframes flashNumber {
+            0% {
+                opacity: 1;
+                transform: scale(1); /* Normal size */
+            }
+            100% {
+                opacity: 0.2; /* Reduced opacity for more pronounced flash */
+                transform: scale(1.5); /* Increased size */
+            }
+        }
+
+        /* Styling for the audio player */
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>2</h1>
+
+    <!-- Audio player -->
+    <audio controls autoplay loop>
+        <source src="audio/intra in apa marii - Dima Cubreacov (youtube).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Redirect to another page after 10 seconds
+        setTimeout(function() {
+            window.location.href = "nextPage copy 2.html"; // Replace with your desired URL
+        }, 10000); // 10000 milliseconds = 10 seconds
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reaction Time Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    #game-container {
+      margin: 50px auto;
+      width: 300px;
+    }
+    .button {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #ddd;
+    }
+    #start-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #target-button {
+      background-color: #FF5722;
+      color: white;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reaction Time Game</h1>
+  <div id="game-container">
+    <button id="start-button" class="button">Start Game</button>
+    <button id="target-button" class="button">Click Me!</button>
+    <p id="message"></p>
+    <p id="reaction-time"></p>
+  </div>
+
+  <script>
+    const startButton = document.getElementById("start-button");
+    const targetButton = document.getElementById("target-button");
+    const message = document.getElementById("message");
+    const reactionTime = document.getElementById("reaction-time");
+
+    let timeout;
+    let startTime;
+
+    // Winning condition: reaction time under 100 milliseconds
+    const winningThreshold = 200; // 100 ms
+
+    function getRandomDelay() {
+      // Random delay between 2 and 4 seconds (2000 to 4000 ms)
+      return Math.random() * (4000 - 2000) + 2000;
+    }
+
+    startButton.addEventListener("click", () => {
+      startButton.disabled = true;
+      targetButton.style.display = "none";
+      message.textContent = "Get ready...";
+      reactionTime.textContent = "";
+
+      const delay = getRandomDelay();
+
+      timeout = setTimeout(() => {
+        targetButton.style.display = "block";
+        startTime = Date.now();
+        message.textContent = "Click the button!";
+      }, delay);
+    });
+
+    targetButton.addEventListener("click", () => {
+      const endTime = Date.now();
+      const timeTaken = endTime - startTime;
+
+      targetButton.style.display = "none";
+      startButton.disabled = false;
+      
+      if (timeTaken <= winningThreshold) {
+        message.textContent = "Congratulations! You won!";
+        reactionTime.textContent = `Your reaction time: ${timeTaken} ms`;
+
+        // Redirect to the next page after a short delay
+        setTimeout(() => {
+          window.location.href = 'cadou4.html'; // Redirect to next page
+        }, 2000); // Redirect after 2 seconds
+      } else {
+        message.textContent = "Try again! You need a faster reaction time.";
+        reactionTime.textContent = `Your reaction time: ${timeTaken} ms`;
+      }
+    });
+
+    // Reset if clicked too early
+    startButton.addEventListener("mousedown", () => {
+      if (targetButton.style.display === "block") return;
+      clearTimeout(timeout);
+      message.textContent = "Too early! Try again.";
+      startButton.disabled = false;
+    });
+  </script>
+</body>
+</html>

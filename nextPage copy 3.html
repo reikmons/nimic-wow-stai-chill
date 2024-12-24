@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sirenute</title>
+    <style>
+        /* Full screen background with smooth color-changing effect */
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: #000;
+            animation: colorChange 3s ease-in-out infinite; /* Smooth color change animation */
+            overflow: visible; /* Allow overflow so images can be fully visible */
+            cursor: none; /* Hide the default cursor */
+        }
+
+        /* Keyframe for smooth, seamless rainbow color changing */
+        @keyframes colorChange {
+            0% { background-color: #ff007f; }
+            14% { background-color: #ff3385; }
+            28% { background-color: #ff66b2; }
+            42% { background-color: #ff007f; }
+            57% { background-color: #ff33cc; }
+            71% { background-color: #ff4d99; }
+            85% { background-color: #ff66b2; }
+            100% { background-color: #ff007f; }
+        }
+
+        /* Dolphin GIF styling */
+        .dolphin {
+            position: absolute;
+            pointer-events: none;
+            width: 100px; /* Adjust size */
+            height: 100px; /* Adjust size */
+            z-index: 9999;
+            transition: transform 0.1s ease-out; /* Optional smooth movement */
+        }
+
+        /* Styling for static images */
+        .static-image {
+            position: absolute; /* Fixed position */
+            z-index: 1;
+            border-radius: 0%; /* Optional: make the images slightly rounded */
+            width: 200px; /* Adjust width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Static images positioned at different spots */
+        #image1 {
+            top: 500%; /* Adjust the vertical position */
+            left: 10%; /* Adjust the horizontal position */
+        }
+
+        #image2 {
+            top: 500%; /* Adjust the vertical position */
+            left: 70%; /* Adjust the horizontal position */
+        }
+
+        /* Link styling */
+        a {
+            position: absolute;
+            top: 80%; /* Adjust the vertical position */
+            left: 50%; /* Adjust the horizontal position */
+            transform: translateX(-50%); /* Center the link */
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #ff007f;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #ff3385; /* Change color on hover */
+        }
+
+        /* Styling for Jocuri button */
+        .jocuri-btn {
+            position: absolute;
+            top: 90%; /* Adjust the vertical position */
+            left: 50%; /* Adjust the horizontal position */
+            transform: translateX(-50%); /* Center the button */
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #ff007f; /* Hot pink color */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .jocuri-btn:hover {
+            background-color: #ff3385; /* Change color on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome!</h1>
+        <p>This page has a dynamic rainbow background.</p>
+    </div>
+
+    <!-- Static Images -->
+    <img id="image1" src="534-mermaid-on-a-rock-maria-odell.png" alt="Image 1" class="static-image">
+    <img id="image2" src="https://www.imghippo.com/i/suyp1031g.png" alt="Image 2" class="static-image">
+
+    <!-- Link to another page -->
+    
+
+    <!-- Jocuri Button -->
+    <button id="jocuriButton" class="jocuri-btn">Jocuri</button>
+
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            // Create new dolphin image
+            const dolphin = document.createElement('img');
+            dolphin.src = "ezgif-1-b77573e09d.gif";  // Replace with your dolphin GIF URL
+            dolphin.alt = "Dolphin";
+            dolphin.classList.add('dolphin');
+            
+            // Get the size of the dolphin
+            const dolphinWidth = 100; // Set to the width of your dolphin GIF
+            const dolphinHeight = 100; // Set to the height of your dolphin GIF
+
+            // Set dolphin's position based on mouse position (centering the dolphin on the cursor)
+            dolphin.style.left = e.pageX - dolphinWidth / 2 + 'px';
+            dolphin.style.top = e.pageY - dolphinHeight / 2 + 'px';
+
+            // Append the dolphin to the body
+            document.body.appendChild(dolphin);
+
+            // Remove the dolphin after animation completes (optional)
+            setTimeout(function() {
+                dolphin.remove();
+            }, 400); // Change this time if you want dolphins to stay longer
+        });
+
+        // Redirect to the games page when the Jocuri button is clicked
+        document.getElementById('jocuriButton').addEventListener('click', function() {
+            window.location.href = 'joc4.html';  // Change this URL to your desired destination
+        });
+    </script>
+</body>
+</html>

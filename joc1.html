@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('./534-mermaid-on-a-rock-maria-odell.png') no-repeat center center/cover;
+        }
+        canvas {
+            border: 1px solid #fff;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent canvas background */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const gridSize = 20;
+        const tileCountX = canvas.width / gridSize;
+        const tileCountY = canvas.height / gridSize;
+
+        let snake = [{ x: 10, y: 10 }]; // Snake starts at the center
+        let direction = { x: 0, y: 0 }; // Initial direction (not moving)
+        let nextDirection = { x: 0, y: 0 }; // To prevent invalid turns
+        let foods = [];
+        let score = 0;
+
+        // Function to spawn multiple food items
+        function placeFoods(count) {
+            while (foods.length < count) {
+                let newFood = {
+                    x: Math.floor(Math.random() * tileCountX),
+                    y: Math.floor(Math.random() * tileCountY)
+                };
+
+                // Ensure the new food doesn't overlap the snake or existing food
+                if (
+                    !snake.some(segment => segment.x === newFood.x && segment.y === newFood.y) &&
+                    !foods.some(food => food.x === newFood.x && food.y === newFood.y)
+                ) {
+                    foods.push(newFood);
+                }
+            }
+        }
+
+        function drawTile(x, y, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x * gridSize, y * gridSize, gridSize, gridSize);
+        }
+
+        function updateGame() {
+            // Update direction
+            direction = nextDirection;
+
+            // Move the snake
+            const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+
+            // Check collision with walls
+            if (head.x < 0 || head.x >= tileCountX || head.y < 0 || head.y >= tileCountY) {
+                resetGame();
+                return;
+            }
+
+            // Check collision with self
+            if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                resetGame();
+                return;
+            }
+
+            // Add new head to the snake
+            snake.unshift(head);
+
+            // Check if any food is eaten
+            const foodEatenIndex = foods.findIndex(food => food.x === head.x && food.y === head.y);
+            if (foodEatenIndex !== -1) {
+                score++;
+                foods.splice(foodEatenIndex, 1); // Remove the eaten food
+                if (score === 5) {
+                    // Redirect to another HTML page when the user wins
+                    window.location.href = 'cadou1.html'; // Change 'win.html' to your desired page
+                    return;
+                }
+                placeFoods(1); // Ensure there is at least 1 new food on the canvas
+            } else {
+                snake.pop(); // Remove the tail if no food is eaten
+            }
+
+            drawGame();
+        }
+
+        function drawGame() {
+            // Clear the canvas
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw food
+            foods.forEach(food => drawTile(food.x, food.y, 'red'));
+
+            // Draw snake
+            snake.forEach(segment => drawTile(segment.x, segment.y, 'lime'));
+
+            // Draw score
+            ctx.fillStyle = 'white';
+            ctx.font = '16px Arial';
+            ctx.fillText(`Score: ${score}`, 10, 20);
+        }
+
+        function resetGame() {
+            snake = [{ x: 10, y: 10 }];
+            direction = { x: 0, y: 0 };
+            nextDirection = { x: 0, y: 0 };
+            score = 0;
+            foods = []; // Clear existing food
+            placeFoods(3); // Start with 3 food items
+        }
+
+        // Handle keyboard input
+        document.addEventListener('keydown', e => {
+            switch (e.key) {
+                case 'ArrowUp':
+                    if (direction.y === 0) nextDirection = { x: 0, y: -1 };
+                    break;
+                case 'ArrowDown':
+                    if (direction.y === 0) nextDirection = { x: 0, y: 1 };
+                    break;
+                case 'ArrowLeft':
+                    if (direction.x === 0) nextDirection = { x: -1, y: 0 };
+                    break;
+                case 'ArrowRight':
+                    if (direction.x === 0) nextDirection = { x: 1, y: 0 };
+                    break;
+            }
+        });
+
+        // Start the game
+        setInterval(updateGame, 100);
+        placeFoods(3); // Initial food placement
+        drawGame();
+    </script>
+</body>
+</html>

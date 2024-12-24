@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('./534-mermaid-on-a-rock-maria-odell.png') no-repeat center center/cover;
+        }
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.6);
+            font-size: 36px;
+            color: white;
+            cursor: pointer;
+        }
+        .cell:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameBoard">
+        <div class="cell" data-cell="0"></div>
+        <div class="cell" data-cell="1"></div>
+        <div class="cell" data-cell="2"></div>
+        <div class="cell" data-cell="3"></div>
+        <div class="cell" data-cell="4"></div>
+        <div class="cell" data-cell="5"></div>
+        <div class="cell" data-cell="6"></div>
+        <div class="cell" data-cell="7"></div>
+        <div class="cell" data-cell="8"></div>
+    </div>
+
+    <script>
+        const gameBoard = document.getElementById('gameBoard');
+        const cells = document.querySelectorAll('.cell');
+        let currentPlayer = 'X'; // Player X starts the game
+        let gameActive = true;
+        const board = ['', '', '', '', '', '', '', '', ''];
+
+        // Winning combinations
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+
+        // Image sources for X and O
+        const xImageSrc = 'il_fullxfull.2037551600_nwgw.png'; // Replace with your image path for X
+        const oImageSrc = '534-mermaid-on-a-rock-maria-odell.png'; // Replace with your image path for O
+
+        // Check if a player has won
+        function checkWinner() {
+            for (let combo of winningCombinations) {
+                const [a, b, c] = combo;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    gameActive = false;
+                    if (board[a] === 'X') {
+                        // Redirect to another page if player wins
+                        window.location.href = 'cadou2.html'; // Replace with your winner page URL
+                    } else {
+                        // Reset game automatically if bot wins
+                        setTimeout(resetGame, 1000);
+                    }
+                    return;
+                }
+            }
+
+            // Check if the board is full (draw)
+            if (!board.includes('')) {
+                gameActive = false;
+                alert('It\'s a draw!');
+                resetGame();
+            }
+        }
+
+        // Handle click on a cell
+        function handleCellClick(e) {
+            const cell = e.target;
+            const cellIndex = cell.getAttribute('data-cell');
+
+            if (board[cellIndex] || !gameActive || currentPlayer === 'O') {
+                return; // Cell is already taken, game is not active, or it's bot's turn
+            }
+
+            board[cellIndex] = currentPlayer;
+            cell.innerHTML = `<img src="${xImageSrc}" alt="X" style="width: 80%; height: 80%;">`;
+
+            checkWinner();
+
+            // Change player to 'O' (bot's turn)
+            currentPlayer = 'O';
+            if (gameActive) {
+                setTimeout(botMove, 500); // Delay bot's move slightly for better UX
+            }
+        }
+
+        // Bot's move (random valid move)
+        function botMove() {
+            const emptyCells = board.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
+            const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            board[randomCell] = 'O';
+            cells[randomCell].innerHTML = `<img src="${oImageSrc}" alt="O" style="width: 80%; height: 80%;">`;
+            checkWinner();
+
+            // Change player to 'X' (human's turn)
+            if (gameActive) {
+                currentPlayer = 'X';
+            }
+        }
+
+        // Reset the game
+        function resetGame() {
+            setTimeout(() => {
+                board.fill('');
+                cells.forEach(cell => {
+                    cell.innerHTML = '';
+                });
+                currentPlayer = 'X';
+                gameActive = true;
+            }, 1000); // Wait 1 second before resetting the game
+        }
+
+        // Attach event listeners to each cell
+        cells.forEach(cell => {
+            cell.addEventListener('click', handleCellClick);
+        });
+    </script>
+</body>
+</html>
