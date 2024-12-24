@@ -1,5 +1,5 @@
 // Set the correct password
-const correctPassword = "123"; // Change this to your desired password
+const correctPassword = "sirenaiustina"; // Change this to your desired password
 
 // Get the form and input elements
 const passwordForm = document.getElementById("passwordForm");
