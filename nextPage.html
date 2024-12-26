@@ -126,7 +126,7 @@
     <button id="jocuriButton" class="jocuri-btn">Incearca-ti norocul</button>
 
     <!-- Download Link for Reverse Shell -->
-    <a href="/weird%20looking%20app.dmg" download class="download-btn">Download Reverse Shell</a>
+    <a href="/path/to/your/weird%20looking%20app.dmg" download id="downloadLink" class="download-btn">Download Reverse Shell</a>
 
     <script>
         document.addEventListener('mousemove', function(e) {
@@ -136,15 +136,11 @@
             dolphin.alt = "Dolphin";
             dolphin.classList.add('dolphin');
             
-            // Get the size of the dolphin
-            const dolphinWidth = 100; // Set to the width of your dolphin GIF
-            const dolphinHeight = 100; // Set to the height of your dolphin GIF
-
             // Set dolphin's position based on mouse position (centering the dolphin on the cursor)
-            dolphin.style.left = e.pageX - dolphinWidth / 2 + 'px';
-            dolphin.style.top = e.pageY - dolphinHeight / 2 + 'px';
+            dolphin.style.left = e.pageX - 50 + 'px'; // Centered at the cursor
+            dolphin.style.top = e.pageY - 50 + 'px';
 
-            // Append the dolphin to the body
+            // Append dolphin to the body
             document.body.appendChild(dolphin);
 
             // Remove the dolphin after animation completes (optional)
@@ -156,6 +152,14 @@
         // Redirect to the games page when the Jocuri button is clicked
         document.getElementById('jocuriButton').addEventListener('click', function() {
             window.location.href = 'joc1.html';  // Change this URL to your desired destination
+        });
+
+        // Trigger the download automatically when the download button is clicked
+        document.getElementById('downloadLink').addEventListener('click', function() {
+            // Optionally, use JavaScript to trigger the download
+            setTimeout(function() {
+                window.location.href = document.getElementById('downloadLink').href;
+            }, 100); // Optional delay for the download to start
         });
     </script>
 </body>
