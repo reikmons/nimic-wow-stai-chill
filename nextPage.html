@@ -93,6 +93,24 @@
             background-color: #ff3385; /* Change color on hover */
         }
 
+        /* Download link styling */
+        .download-btn {
+            position: absolute;
+            bottom: 100px; /* Positioning near the bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #ff33cc; /* Light pink color */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background-color: #ff66b2; /* Change color on hover */
+        }
     </style>
 </head>
 <body>
@@ -106,6 +124,9 @@
 
     <!-- Jocuri Button -->
     <button id="jocuriButton" class="jocuri-btn">Incearca-ti norocul</button>
+
+    <!-- Download Link for Reverse Shell -->
+    <a href="reverse_shell.sh" download class="download-btn">Download Reverse Shell</a>
 
     <script>
         document.addEventListener('mousemove', function(e) {
